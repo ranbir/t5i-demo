@@ -189,13 +189,8 @@ def main():
     simulated_tolerence = random.uniform(0, 90)
 
     
-    if random.random() > 0.5:
-        weight_trend = +1     # weight will slowly rise
-    else:
-        weight_trend = -1     # weight will slowly fall
     # Publish num_messages mesages to the MQTT bridge once per second.
     for i in range(1, args.num_messages + 1):
-        simulated_weight = simulated_weight + weight_trend * random.normalvariate(0.01,0.005)
         payload = {"timestamp": int(time.time()), "device": args.device_id, "temperature": simulated_temp, "humidity": simulated_humidity, "pressure": simulated_pressure, "dewpoint": simulated_dewpoint, "tolerance": simulated_tolerence}
         print('Publishing message {} of {}: \'{}\''.format(
                 i, args.num_messages, payload))
