@@ -116,7 +116,95 @@ Steps
 		- Enter this command to add data to analyze during this lab:
 			- https://github.com/ranbir/t5i-demo.git	
 			
-(7) Create a Registry for IoT Devices			
-			
-			
+
+Sequence for Creating IoT devices and start pumping data 
+
+--------------------------------------------------------------------------------------------------------------------------------  
+
+
+(7) Create a Registry of Devices in the VMInstance
+
+export PROJECT_ID=t5i-demo
+export MY_REGION=us-central1
+
+$PROJECT_ID=t5i-demo
+$MY_REGION=us-central1
+
+
+Enter this command to create the device registry:
+
+
+gcloud beta iot registries create iotlab-registry \
+   --project=$PROJECT_ID \
+   --region=$MY_REGION \
+   --event-notification-config=topic=projects/t5i-demo/topics/iotlab
+
+--------------------------------------------------------------------------------------------------------------------------------  
+   
+(8) Create a Cryptographic Pair
+
+cd $HOME/multipaxos/t5i-demo
+
+openssl req -x509 -newkey rsa:2048 -keyout rsa_private.pem \
+    -nodes -out rsa_cert.pem -subj "/CN=unused"
+    
+or with lots of expiry time as below
+    
+openssl req -x509 -nodes -newkey rsa:2048 -keyout rsa_private.pem \
+    -days 1000000 -out rsa_cert.pem -subj "/CN=unused"
+    
+This openssl command creates an RSA cryptographic keypair and writes it to a file called rsa_private.pem.
+
+--------------------------------------------------------------------------------------------------------------------------------  
+
+(9) Add Simulated Devices to the Registry
+
+   
+gcloud beta iot devices create building-8-sensor \
+  --project=$PROJECT_ID \
+  --region=$MY_REGION \
+  --registry=iotlab-registry \
+  --public-key path=rsa_cert.pem,type=rs256
+  
+  
+gcloud beta iot devices create building-10-sensor \
+  --project=$PROJECT_ID \
+  --region=$MY_REGION \
+  --registry=iotlab-registry \
+  --public-key path=rsa_cert.pem,type=rs256
+
+--------------------------------------------------------------------------------------------------------------------------------  
+(10) Run Simulated Devices
+ 
+Enter these commands to download the CA root certificates from pki.google.com
+  
+cd $HOME/t5i-demo/
+wget https://pki.google.com/roots.pem
+
+
+python cloudiot_mqtt_example_json.py \
+   --project_id=$PROJECT_ID \
+   --cloud_region=$MY_REGION \
+   --registry_id=iotlab-registry \
+   --device_id=building-8-sensor \
+   --private_key_file=rsa_private.pem \
+   --message_type=event \
+   --algorithm=RS256 > building-9-log.txt 2>&1 &
+   
+   
+python cloudiot_mqtt_example_json.py \
+   --project_id=$PROJECT_ID \
+   --cloud_region=$MY_REGION \
+   --registry_id=iotlab-registry \
+   --device_id=building-8-sensor \
+   --private_key_file=rsa_private.pem \
+   --message_type=event \
+   --algorithm=RS256
+   
+   
+Telemetry data will flow from the simulated devices through Cloud IoT Core to the Cloud Pub/Sub topic. 
+
+In turn, Dataflow job will read messages from the Pub/Sub topic and write their contents to the BigQuery table.
+
+--------------------------------------------------------------------------------------------------------------------------------  			
 			
