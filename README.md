@@ -18,13 +18,13 @@ To Create a registry of external sensors/devices inside Cloud IOT that connect v
   
 <h2>Steps </h2>
 
-(1) Start Cloud Shell
+<h3>(1) Start Cloud Shell </h3>
 		- gcloud auth list
 			output - Credentialed accounts: - <myaccount>@<mydomain>.com (active)
 		- gcloud config list project
 			output - [core] project = <PROJECT_ID>
 			
-(2) Create a Pub/Sub Topic
+<h3>(2) Create a Pub/Sub Topic</h3>
 		- In the GCP Console, go to Navigation menu> Pub/Sub> Topics
 		- Click Create Topic. 
 			- The Create a topic dialog shows you a partial URL path, consisting of projects followed by your project name and a trailing slash, then topics/ . 
@@ -36,7 +36,7 @@ To Create a registry of external sensors/devices inside Cloud IOT that connect v
 		- In the Permissions dialogue, add this member: cloud-iot@system.gserviceaccount.com
 		- Grant the new member the Pub/Sub > Pub/Sub Publisher role. Click Add.
 		
-(3) Create a BigQuery dataset
+<h3>(3) Create a BigQuery dataset</h3>
 		- In the GCP Console, go to Navigation menu> BigQuery.
 		- Click on the blue arrow next to the name of your project and select Create new dataset
 		- Give the new dataset the name iotlab and click OK.
@@ -50,7 +50,7 @@ To Create a registry of external sensors/devices inside Cloud IOT that connect v
 		- In the newly created line, enter temperature for the field name. Set the field's Type to FLOAT.
 		- Leave the other defaults unmodified. Click Create Table.
 
-(4) Create a Cloud Storage Bucket
+<h3>(4) Create a Cloud Storage Bucket</h3>
 		- In the GCP Console, go to Navigation menu > Storage.
 		- Click CREATE BUCKET.
 		- For Name, paste in your GCP project ID.
@@ -58,7 +58,7 @@ To Create a registry of external sensors/devices inside Cloud IOT that connect v
 		- For Location, choose the selection closest to you.
 		- Click Create.
 
-(5) Set up a Cloud Dataflow Pipeline
+<h3>(5) Set up a Cloud Dataflow Pipeline</h3>
 		- In the GCP Console, go to Navigation menu > Dataflow.
 		- In the top menu bar, click CREATE JOB FROM TEMPLATE.
 		- In the job-creation dialog, for Job name, enter iotlab.
@@ -80,7 +80,7 @@ To Create a registry of external sensors/devices inside Cloud IOT that connect v
 		- Click Run Job. A new streaming job is started. You can now see a visual representation of the data pipeline.
 
 
-(6) Prepare Your Compute Engine VM
+<h3>(6) Prepare Your Compute Engine VM</h3>
 		- In your SSH session on the iot-device-simulator VM instance, enter this command to remove the default Google Cloud Platform SDK installation
 			- sudo apt-get remove google-cloud-sdk -y
 		- Now install the latest version of the Google Cloud Platform SDK and accept all defaults:
@@ -123,7 +123,7 @@ To Create a registry of external sensors/devices inside Cloud IOT that connect v
 --------------------------------------------------------------------------------------------------------------------------------  
 
 
-(7) Create a Registry of Devices in the VMInstance
+<h3>(7) Create a Registry of Devices in the VMInstance</h3>
 
 export PROJECT_ID=t5i-demo
 export MY_REGION=us-central1
@@ -142,7 +142,7 @@ gcloud beta iot registries create iotlab-registry \
 
 --------------------------------------------------------------------------------------------------------------------------------  
    
-(8) Create a Cryptographic Pair
+<h3>(8) Create a Cryptographic Pair </h3>
 
 cd $HOME/multipaxos/t5i-demo
 
@@ -158,7 +158,7 @@ This openssl command creates an RSA cryptographic keypair and writes it to a fil
 
 --------------------------------------------------------------------------------------------------------------------------------  
 
-(9) Add Simulated Devices to the Registry
+<h3>(9) Add Simulated Devices to the Registry</h3>
 
    
 gcloud beta iot devices create building-8-sensor \
@@ -175,7 +175,7 @@ gcloud beta iot devices create building-10-sensor \
   --public-key path=rsa_cert.pem,type=rs256
 
 --------------------------------------------------------------------------------------------------------------------------------  
-(10) Run Simulated Devices
+<h3>(10) Run Simulated Devices </h3>
  
 Enter these commands to download the CA root certificates from pki.google.com
   
