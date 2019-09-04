@@ -1,8 +1,5 @@
 # T5i-Demo 
 
-![Architecture Diagram](/IOT-GCP-Arch.png)
-Format: ![Alt Text](url)
-
 <h1>Experimenting with an IoT Data Pipeline on Google Cloud Platform (GCP) </h1>
 
 We will be using:
@@ -21,9 +18,10 @@ The flow is
 
 Sensor via MQTT --> Connects to MQTT hub at GCP Cloud IOT --> Creates Pub/Sub Entry that sends entries to CloudDataflow --> Dataflow logs to a time series BigQuery database --> From BigQuery you analyze that info using Cloud DataLab or Cloud DataStudio.
 
+<h2>Architecture Diagram </h2>
+![Architecture Diagram](/IOT-GCP-Arch.png)  
 
-  
-<h2>Steps </h2>
+]<h2>Steps </h2>
 
 <h3>(1) Start Cloud Shell </h3>
 		- gcloud auth list
