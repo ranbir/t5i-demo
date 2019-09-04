@@ -120,8 +120,6 @@ To Create a registry of external sensors/devices inside Cloud IOT that connect v
 
 <h2>Sequence for Creating IoT devices and start pumping data </h2>
 
---------------------------------------------------------------------------------------------------------------------------------  
-
 
 <h3>(7) Create a Registry of Devices in the VMInstance</h3>
 
