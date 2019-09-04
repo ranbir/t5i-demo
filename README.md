@@ -2,6 +2,7 @@
 
 <h1>Experimenting with an IoT Data Pipeline on Google Cloud Platform (GCP) using: </h1>
 
+We will be using:
   1. Google Compute Engine
   2. Google Cloud Pub/Sub
   3. Google Cloud IoT Core
@@ -9,13 +10,13 @@
   5. Google BigQuery
   6. Google Cloud Storage
   
-Aim:
+<h2>Aim:</h2>
 
 To Create a registry of external sensors/devices inside Cloud IOT that connect via MQTT and then do analytics using BigQuery. The flow is Sensor via MQTT --> Connects to MQTT hub at GCP Cloud IOT --> Creates Pub/Sub Entry that sends entries to CloudDataflow --> Dataflow logs to a time series BigQuery database --> From BigQuery you analyze that info using Cloud DataLab or Cloud DataStudio.
 
 
   
-Steps 
+<h2>Steps </h2>
 
 (1) Start Cloud Shell
 		- gcloud auth list
@@ -117,7 +118,7 @@ Steps
 			- https://github.com/ranbir/t5i-demo.git	
 			
 
-Sequence for Creating IoT devices and start pumping data 
+<h2>Sequence for Creating IoT devices and start pumping data </h2>
 
 --------------------------------------------------------------------------------------------------------------------------------  
 
