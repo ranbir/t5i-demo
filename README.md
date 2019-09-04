@@ -1,5 +1,8 @@
 # T5i-Demo 
 
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
+
 <h1>Experimenting with an IoT Data Pipeline on Google Cloud Platform (GCP) </h1>
 
 We will be using:
