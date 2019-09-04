@@ -1,6 +1,6 @@
 # T5i-Demo 
 
-<h1>Experimenting with an IoT Data Pipeline on Google Cloud Platform (GCP) using: </h1>
+<h1>Experimenting with an IoT Data Pipeline on Google Cloud Platform (GCP) </h1>
 
 We will be using:
   1. Google Compute Engine
