@@ -12,7 +12,11 @@ We will be using:
   
 <h2>Aim:</h2>
 
-To Create a registry of external sensors/devices inside Cloud IOT that connect via MQTT and then do analytics using BigQuery. The flow is Sensor via MQTT --> Connects to MQTT hub at GCP Cloud IOT --> Creates Pub/Sub Entry that sends entries to CloudDataflow --> Dataflow logs to a time series BigQuery database --> From BigQuery you analyze that info using Cloud DataLab or Cloud DataStudio.
+To Create a registry of external sensors/devices inside Cloud IOT that connect via MQTT and then do analytics using BigQuery. 
+
+The flow is 
+
+Sensor via MQTT --> Connects to MQTT hub at GCP Cloud IOT --> Creates Pub/Sub Entry that sends entries to CloudDataflow --> Dataflow logs to a time series BigQuery database --> From BigQuery you analyze that info using Cloud DataLab or Cloud DataStudio.
 
 
   
